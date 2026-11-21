@@ -1,0 +1,30 @@
+.nch-panel { min-width: 0; width: 100%; box-sizing: border-box; }
+.nch-panel [hidden] { display: none !important; }
+.nch-panel .nch-content { padding: 12px 4px; }
+.nch-panel .nch-note { font-size: .9em; opacity: .8; line-height: 1.5; overflow-wrap: anywhere; }
+.nch-panel .nch-section-title { margin: 18px 0 8px; padding-top: 14px; border-top: 1px solid var(--SmartThemeBorderColor, #7775); }
+.nch-panel .nch-block { display: flex; flex-direction: column; gap: 5px; margin: 8px 0; }
+.nch-panel .nch-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 10px 0; }
+.nch-panel .nch-fields.nch-single { grid-template-columns: minmax(0, 1fr); }
+.nch-panel .nch-fields label { display: flex; flex-direction: column; min-width: 0; gap: 5px; }
+.nch-panel .text_pole { width: 100%; min-width: 0; box-sizing: border-box; margin: 0; }
+.nch-panel .nch-actions { display: flex; flex-flow: row wrap; gap: 8px; margin: 12px 0; }
+.nch-panel button.menu_button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; width: auto; min-width: 0; min-height: 42px; height: auto; margin: 0; padding: 9px 14px; white-space: nowrap; word-break: keep-all; writing-mode: horizontal-tb; flex: 0 0 auto; font: inherit; line-height: 1.3; }
+.nch-panel button:disabled { opacity: .55; cursor: wait; }
+.nch-panel .nch-profiles { list-style: none; margin: 0 0 8px; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.nch-panel .nch-profile { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; border: 1px solid var(--SmartThemeBorderColor, #7775); border-radius: 8px; }
+.nch-panel .nch-profile.nch-active { border-color: var(--SmartThemeQuoteColor, #8cf); }
+.nch-panel .nch-profile-name { min-width: 0; overflow-wrap: anywhere; line-height: 1.4; }
+.nch-panel .nch-profile-name small { display: block; opacity: .7; }
+.nch-panel .nch-badge { font-size: .85em; opacity: .85; white-space: nowrap; }
+.nch-panel .nch-account-header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--SmartThemeBorderColor, #7775); }
+.nch-panel #nch-account { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px 12px; margin: 14px 0; }
+.nch-panel #nch-account dt, .nch-panel #nch-account dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
+.nch-panel #nch-account dd { text-align: right; font-variant-numeric: tabular-nums; }
+.nch-panel [role="status"] { line-height: 1.5; overflow-wrap: anywhere; }
+@media (max-width: 600px) {
+ .nch-panel .nch-fields { grid-template-columns: minmax(0, 1fr); }
+ .nch-panel .text_pole { font-size: 16px; }
+ .nch-panel button.menu_button { min-height: 44px; padding: 9px 12px; }
+ .nch-panel .nch-actions button { flex: 1 0 auto; }
+}

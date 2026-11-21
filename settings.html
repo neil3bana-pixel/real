@@ -1,0 +1,48 @@
+<div class="inline-drawer nch-panel">
+ <div class="inline-drawer-toggle inline-drawer-header"><b>NAI 통합 연결</b><div class="inline-drawer-icon fa-solid fa-circle-chevron-down down"></div></div>
+ <div class="inline-drawer-content nch-content">
+  <label class="checkbox_label"><input id="nch-enabled" type="checkbox"><span>NovelAI 이미지 요청을 통합 연결로 보내기</span></label>
+  <p class="nch-note">기본 Image Generation과 AutoPic(기존 방식·V4.5 Full·V5 Full) 요청을 현재 연결로 전달합니다. 모델과 이미지 설정은 사용 중인 이미지 생성 확장에서 선택하세요.</p>
+
+  <div class="nch-section-title"><b>등록된 연결</b></div>
+  <ul id="nch-profiles" class="nch-profiles"></ul>
+  <p id="nch-profiles-empty" class="nch-note">등록된 연결이 없습니다. 아래에서 추가하세요.</p>
+  <label class="checkbox_label"><input id="nch-remember-current" type="checkbox"><span>현재 연결 저장 (서버 재시작 후 복원)</span></label>
+  <div class="nch-actions">
+   <button type="button" id="nch-check" class="menu_button">인증 확인</button>
+   <button type="button" id="nch-disconnect" class="menu_button">현재 연결 삭제</button>
+  </div>
+
+  <div class="nch-section-title"><b>연결 추가 또는 갱신</b></div>
+  <label for="nch-service" class="nch-block">서비스
+   <select id="nch-service" class="text_pole">
+    <option value="sharednai">SharedNAI (아이디·비밀번호)</option>
+    <option value="sakura">Sakura NAI (사이트 키)</option>
+    <option value="custom">다른 서버 (NovelAI 호환 · sdapi)</option>
+   </select>
+  </label>
+  <div class="nch-fields" data-group="sharednai">
+   <label for="nch-username">사이트 아이디<input id="nch-username" class="text_pole" autocomplete="off"></label>
+   <label for="nch-password">사이트 비밀번호<input id="nch-password" class="text_pole" type="password" autocomplete="off"></label>
+  </div>
+  <div class="nch-fields" data-group="custom" hidden>
+   <label for="nch-baseurl">API 기본 주소<input id="nch-baseurl" class="text_pole" placeholder="https://api.example.com/v1" autocomplete="off" autocapitalize="off" spellcheck="false"></label>
+   <label for="nch-label">연결 이름<input id="nch-label" class="text_pole" placeholder="예: huamio" autocomplete="off"></label>
+  </div>
+  <div class="nch-fields nch-single" data-group="key" hidden>
+   <label for="nch-key">사이트 키<input id="nch-key" class="text_pole" type="password" autocomplete="off"></label>
+  </div>
+  <p class="nch-note" data-group="custom" hidden>주소가 <code>/sdapi/v1</code>로 끝나면 A1111(sdapi) 방식으로, 그 외에는 NovelAI 호환 방식으로 연결합니다. 서비스 제공자가 안내한 HTTPS API 주소를 입력하세요.</p>
+  <label class="checkbox_label"><input id="nch-remember" type="checkbox" checked><span>새 연결 저장 (서버 재시작 후 복원)</span></label>
+  <div class="nch-actions">
+   <button type="button" id="nch-connect" class="menu_button">추가하고 연결</button>
+  </div>
+  <p id="nch-status" role="status" aria-live="polite"></p>
+  <p class="nch-note">비밀번호는 저장하지 않습니다. 저장을 켠 연결의 키·로그인 토큰은 서버의 사용자 데이터 폴더에 저장되며, 연결을 삭제하면 지워집니다.</p>
+
+  <div class="nch-account-header"><b>크레딧·할당량</b><button type="button" id="nch-refresh" class="menu_button">계정 정보 새로고침</button></div>
+  <dl id="nch-account"></dl>
+  <p id="nch-account-status" role="status" aria-live="polite">연결 후 표시됩니다.</p>
+  <p class="nch-note">사이트가 제공한 값만 표시합니다. ‘정보 없음’은 0이나 무제한을 뜻하지 않습니다.</p>
+ </div>
+</div>

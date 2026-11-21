@@ -1,0 +1,11 @@
+{
+  "display_name": "000 NAI 통합 연결",
+  "loading_order": -1000,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "author": "NAI Connection Hub",
+  "version": "1.0.1",
+  "description": "SharedNAI·Sakura·NovelAI 호환 서버·sdapi(A1111 방식) 서버로 이미지 생성 및 AutoPic 연결",
+  "css": "style.css"
+}
