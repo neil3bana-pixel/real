@@ -32,7 +32,7 @@
   <div class="nch-fields nch-single" data-group="key" hidden>
    <label for="nch-key">사이트 키<input id="nch-key" class="text_pole" type="password" autocomplete="off"></label>
   </div>
-  <p class="nch-note" data-group="custom" hidden>주소가 <code>/sdapi/v1</code>로 끝나면 A1111(sdapi) 방식으로, 그 외에는 NovelAI 호환 방식으로 연결합니다. 서비스 제공자가 안내한 HTTPS API 주소를 입력하세요.</p>
+  <p class="nch-note" data-group="custom" hidden>주소가 <code>/sdapi/v1</code>로 끝나면 A1111(sdapi) 방식으로, 그 외에는 NovelAI 호환 방식으로 연결합니다.<br>· NovelAI 방식(예: <code>…/v1</code>): 사이트에서 발급한 토큰 전체를 키에 입력합니다.<br>· sdapi 방식(<code>…/sdapi/v1</code>): 토큰만 입력하세요. 아이디 <code>api</code>는 자동으로 붙습니다.</p>
   <label class="checkbox_label"><input id="nch-remember" type="checkbox" checked><span>새 연결 저장 (서버 재시작 후 복원)</span></label>
   <div class="nch-actions">
    <button type="button" id="nch-connect" class="menu_button">추가하고 연결</button>

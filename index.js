@@ -11,6 +11,11 @@ let status = {connected: false, active: null, profiles: []};
 let previousNovelState, ownsGate = false, container, accountVersion = 0, refreshTimer;
 const el = id => container?.querySelector('#nch-' + id);
 const show = message => { if (el('status')) el('status').textContent = message; };
+const fail = error => {
+    const message = error?.message || String(error);
+    show(message); console.error('[NAI 통합 연결]', error);
+    try { window.toastr?.error(message, 'NAI 통합 연결'); } catch { /* optional */ }
+};
 const isConnected = () => status.connected === true;
 const activeProfile = () => status.profiles.find(p => p.id === status.active);
 
@@ -99,8 +104,13 @@ function updateServiceFields() {
 }
 function connectBody() {
     const service = el('service').value, remember = el('remember').checked;
-    if (service === 'sharednai') return {preset: 'sharednai', username: el('username').value, password: el('password').value, remember};
+    if (service === 'sharednai') {
+        if (!el('username').value.trim() || !el('password').value) throw new Error('사이트 아이디와 비밀번호를 입력하세요.');
+        return {preset: 'sharednai', username: el('username').value, password: el('password').value, remember};
+    }
+    if (!el('key').value.trim()) throw new Error('사이트 키(토큰)를 입력하세요.');
     if (service === 'sakura') return {preset: 'sakura', key: el('key').value, remember};
+    if (!el('baseurl').value.trim()) throw new Error('API 기본 주소를 입력하세요.');
     return {preset: 'custom', baseUrl: el('baseurl').value.trim(), label: el('label').value.trim(), key: el('key').value, remember};
 }
 
@@ -125,24 +135,26 @@ jQuery(async () => {
             applyStatus(await (await api('/select', {id})).json());
             settings.enabled = true; el('enabled').checked = true; saveSettingsDebounced(); updateGate();
             show(`${profileTitle(activeProfile()).title}로 전환했습니다.`);
-        } catch (error) { show(error.message); await syncStatus(); }
+        } catch (error) { await syncStatus(); fail(error); }
         finally { setBusy(false); }
         await refreshAccount();
     });
     el('connect').addEventListener('click', async () => {
-        const body = connectBody(); el('password').value = ''; el('key').value = '';
+        let body;
+        try { body = connectBody(); } catch (error) { fail(error); return; }
         setBusy(true); show('연결 확인 중…'); clearAccount('계정 연결 중…');
         try {
             applyStatus(await (await api('/connect', body)).json());
+            el('password').value = ''; el('key').value = '';
             settings.enabled = true; el('enabled').checked = true; saveSettingsDebounced(); updateGate();
             show(`${profileTitle(activeProfile()).title} 연결되었습니다.`);
-        } catch (error) { show(error.message); await syncStatus(); }
+        } catch (error) { await syncStatus(); fail(error); }
         finally { setBusy(false); }
         await refreshAccount();
     });
     el('check').addEventListener('click', async () => {
         setBusy(true);
-        try { await api('/check', {}); show('인증 정상'); } catch (error) { show(error.message); await syncStatus(); }
+        try { await api('/check', {}); show('인증 정상'); } catch (error) { await syncStatus(); fail(error); }
         finally { setBusy(false); }
         await refreshAccount();
     });

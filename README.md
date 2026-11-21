@@ -1,6 +1,6 @@
-# 000 NAI 통합 연결 (화면 확장) 1.0.1
+# 000 NAI 통합 연결 (화면 확장) 1.0.2
 
-서버 플러그인 `nai-connection-hub`(1.0.1 이상)와 함께 쓰는 화면 확장입니다.
+서버 플러그인 `nai-connection-hub`(1.0.2 이상)와 함께 쓰는 화면 확장입니다.
 
 - 설치 위치: `SillyTavern/data/default-user/extensions/nai-connection-hub/`
 - GitHub에 올릴 때는 이 폴더 **안의 파일**을 저장소 최상위에 올립니다. (`manifest.json`이 최상위에 있어야 함)

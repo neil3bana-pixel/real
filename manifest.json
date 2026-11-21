@@ -5,7 +5,7 @@
   "optional": [],
   "js": "index.js",
   "author": "NAI Connection Hub",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SharedNAI·Sakura·NovelAI 호환 서버·sdapi(A1111 방식) 서버로 이미지 생성 및 AutoPic 연결",
   "css": "style.css"
 }
